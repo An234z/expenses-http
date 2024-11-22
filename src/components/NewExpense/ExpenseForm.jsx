@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
-    // Eraldi useState iga sisendvälja jaoks
+    
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredPrice, setEnteredPrice] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
