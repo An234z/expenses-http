@@ -13,7 +13,7 @@ import NewExpense from './components/NewExpense/NewExpense';
   },
   {
     id: 'id2',
-    date: new Date(2024, 10, 12),
+    date: new Date(2023, 10, 12),
     title: 'New jeans',
     price: 99.99
   },
@@ -23,7 +23,7 @@ import NewExpense from './components/NewExpense/NewExpense';
     title: 'New bag',
     price: 59.99
   }
- ];
+ ]; 
 
  const App = () => {
   const [expenses, setExpenses] = useState(DYMMY_EXPENSES)
