@@ -13,9 +13,10 @@ const Expenses = (props) => {
         setSelectedYear(year);
     };
 
-    const filteredExpenses = props.data.filter(
-        (expense) => expense.date.getFullYear().toString() === selectedYear
-    );
+    const filteredExpenses = props.data.filter((expense) => {
+        return new Date(expense.date).getFullYear().toString() === selectedYear;
+      });
+      
 
     const addExpenseHandler = (newExpense) => {
         console.log('New expense added:', newExpense);
