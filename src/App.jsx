@@ -32,17 +32,37 @@ const App = () => {
     getExpenses();
   }, []);
 
-
-  console.log(error)
   const errorHandler = () => {
-    setError(null)
-    setShowError(false)
+    setError(null);
+    setShowError(false);
   };
 
   const addExpenseHandler = (expense) => {
-    setExpenses((previousExpenses) => {
-      return [expense, ...previousExpenses];
-    });
+    const addExpense = async (expense) => {
+      try {
+        const response = await fetch('http://localhost:3005/add-expense', {
+          method: 'POST',
+          body: JSON.stringify(expense),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) { 
+          throw new Error('Failed saving data');
+        }
+
+        const responseData = await response.json(); 
+        setExpenses([expense, ...expenses]);
+      } catch (error) {
+        setError({
+          title: 'An error occurred!',
+          message: 'Failed saving expenses data, please try again.',
+        });
+        setShowError(true);
+      }
+    };
+    addExpense(expense);
   };
 
   return (
