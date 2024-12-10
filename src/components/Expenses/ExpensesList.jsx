@@ -2,21 +2,28 @@ import './ExpensesList.css';
 import ExpenseItem from "./ExpenseItem";
 
 const ExpensesList = (props) => {
-    if (props.expenses.length === 0) {
-        return (
-            <p className='expenses-list_fallback'>No expenses found.</p>
-        );
+
+    if (props.isLoading) {
+        return <p className='expenses-list__fallback'><b>Fetching expenses data...</b></p>; 
+    }
+
+
+    if (!props.filteredExpenses || props.filteredExpenses.length === 0) {
+        return <p className="expenses-list__fallback">No expenses found.</p>;
     }
 
     return (
         <ul className='expenses-list'>
             {
-                props.expenses.map((expense) => {
-                    return <ExpenseItem expenseData={expense} key={expense.id} />
-                })
+                props.filteredExpenses.map((expense) => (
+                    <ExpenseItem 
+                        expenseData={expense} 
+                        key={expense.id} 
+                    />
+                ))
             }
         </ul>
     );
-}
+};
 
 export default ExpensesList;
